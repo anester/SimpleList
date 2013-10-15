@@ -1,0 +1,50 @@
+﻿@model SimpleListData.ListItem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ListItem</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.List.UserListName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.List.UserListName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ListItemName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ListItemName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateEntered)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateEntered)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateDone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateDone)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ListItemId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

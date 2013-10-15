@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SimpleListData.UserList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner.UserLogin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserListName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner.UserLogin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserListName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserListId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserListId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserListId })
+        </td>
+    </tr>
+}
+
+</table>
