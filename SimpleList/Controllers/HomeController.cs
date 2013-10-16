@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleListData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,6 +28,21 @@ namespace SimpleList.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(User user)
+        {
+            SimpleListContext.ListDbContext context = new SimpleListContext.ListDbContext();
+            User luser = context.Users.FirstOrDefault(u => u.UserLogin == user.UserLogin);
+            if (luser != null)
+            {
+                Session["USER"] = luser;
+                return Redirect("/List/" + user.UserLogin);
+            }
+
+            return Redirect("/Users/Create");
         }
     }
 }
