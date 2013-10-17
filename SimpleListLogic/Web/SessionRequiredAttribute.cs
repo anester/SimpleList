@@ -13,7 +13,7 @@ namespace SimpleListLogic.Web
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (HttpContext.Current.Session["UserID"] == null)
+            if (HttpContext.Current.Session["USER"] == null)
             {
                 if (filterContext.HttpContext.Request.IsAjaxRequest())
                 {

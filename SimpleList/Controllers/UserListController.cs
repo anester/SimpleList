@@ -7,10 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using SimpleListData;
 using SimpleListContext;
+using SimpleListLogic.Web;
 
 namespace SimpleList.Controllers
 {
-    public class UserListController : Controller
+    public class UserListController : BaseController
     {
         private ListDbContext db = new ListDbContext();
 
