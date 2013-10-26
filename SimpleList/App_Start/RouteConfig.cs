@@ -13,23 +13,25 @@ namespace SimpleList
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "UserList",
-                url: "List/{username}/{userlistid}",
-                defaults: new { controller = "ListItem", action = "Index", userlistid = 0 }
-            );
+            //routes.MapRoute(
+            //    name: "UserList",
+            //    url: "List/{username}/{userlistid}",
+            //    defaults: new { controller = "ListItem", action = "Index", userlistid = 0 }
+            //);
 
-            routes.MapRoute(
-                name: "Default2",
-                url: "{controller}/{action}/{username}/{userlistid}/{id}",
-                defaults: new { controller = "Home", action = "Index", username="", userlistid=0, id = UrlParameter.Optional }
-            );
+            //routes.MapRoute(
+            //    name: "Default2",
+            //    url: "{controller}/{action}/{username}/{userlistid}/{id}",
+            //    defaults: new { controller = "Home", action = "Index", username="", userlistid=0, id = UrlParameter.Optional }
+            //);
 
             routes.MapRoute(
                 name: "Default1",
                 url: "{controller}/{action}/{username}/{id}",
-                defaults: new { controller = "Home", action = "Index", username="", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", username = "", id = UrlParameter.Optional }
             );
+
+
 
             routes.MapRoute(
                 name: "Default",

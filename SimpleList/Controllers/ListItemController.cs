@@ -23,11 +23,11 @@ namespace SimpleList.Controllers
             IEnumerable<ListItem> listitems = null;
             if (!string.IsNullOrEmpty(username) && userlistid == 0)
             {
-                listitems = db.ListItems.Where(li => li.List.Owner.UserLogin == username).Include(l => l.List);
+                //listitems = db.ListItems.Where(li => li.List.Owner.UserLogin == username).Include(l => l.List);
             }
             else if (!string.IsNullOrEmpty(username) && userlistid != 0)
             {
-                listitems = db.ListItems.Where(li => li.List.Owner.UserLogin == username && li.List.UserListId == userlistid).Include(l => l.List);
+                //listitems = db.ListItems.Where(li => li.List.Owner.UserLogin == username && li.List.UserListId == userlistid).Include(l => l.List);
             }
             else
             {

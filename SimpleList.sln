@@ -16,6 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D57F8F
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleListUtils", "SimpleListUtils\SimpleListUtils.csproj", "{8D6BF54C-52B9-4DEB-B1CC-E66345820124}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleListWeb", "SimpleListWeb\SimpleListWeb.csproj", "{319D091C-3E59-4A1D-A9D7-709BBFCA91B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,14 @@ Global
 		{CF34BE53-E3E2-4F98-8F87-A57A036420C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF34BE53-E3E2-4F98-8F87-A57A036420C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF34BE53-E3E2-4F98-8F87-A57A036420C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D6BF54C-52B9-4DEB-B1CC-E66345820124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D6BF54C-52B9-4DEB-B1CC-E66345820124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D6BF54C-52B9-4DEB-B1CC-E66345820124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D6BF54C-52B9-4DEB-B1CC-E66345820124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{319D091C-3E59-4A1D-A9D7-709BBFCA91B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{319D091C-3E59-4A1D-A9D7-709BBFCA91B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{319D091C-3E59-4A1D-A9D7-709BBFCA91B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{319D091C-3E59-4A1D-A9D7-709BBFCA91B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

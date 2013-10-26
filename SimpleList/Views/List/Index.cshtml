@@ -1,0 +1,15 @@
+﻿@model IEnumerable<SimpleListData.UserList>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-2.0.3.js"></script>
+<script src="~/Scripts/Views/List/Index.js"></script>
+<h2>Index</h2>
+<div id="CreateBtn">Create</div>
+
+@foreach (SimpleListData.UserList item in Model)
+{
+    <div>@item.UserListName</div>
+}

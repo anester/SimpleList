@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 
-namespace SimpleListLogic.Web
+namespace SimpleListUtils
 {
-    [SessionRequired]
-    public class BaseController : Controller
+    public class Class1
     {
     }
 }
