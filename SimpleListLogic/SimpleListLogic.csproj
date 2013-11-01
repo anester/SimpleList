@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Managers\BaseManager.cs" />
+    <Compile Include="Managers\ListItemManager.cs" />
     <Compile Include="Managers\LoginManager.cs" />
     <Compile Include="Managers\UserListManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

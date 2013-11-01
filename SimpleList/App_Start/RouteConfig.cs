@@ -25,19 +25,19 @@ namespace SimpleList
             //    defaults: new { controller = "Home", action = "Index", username="", userlistid=0, id = UrlParameter.Optional }
             //);
 
-            routes.MapRoute(
-                name: "Default1",
-                url: "{controller}/{action}/{username}/{id}",
-                defaults: new { controller = "Home", action = "Index", username = "", id = UrlParameter.Optional }
-            );
-
-
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Default1",
+                url: "{controller}/{action}/{username}/{id}",
+                defaults: new { controller = "Home", action = "Index", username = "", id = UrlParameter.Optional }
+            );
+
         }
     }
 }

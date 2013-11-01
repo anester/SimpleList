@@ -20,6 +20,10 @@ namespace SimpleListLogic.Managers
         {
             string lookupname = string.IsNullOrEmpty(username) ? Session.CurrentLogin.LoginName : username;
             var lists = Context.UserLists.Where(ul => ul.Owner.UserLogin.LoginName == lookupname).ToList();
+            foreach (var list in lists)
+            {
+                list.ListItems = Context.ListItems.Where(i => i.UserListId == list.UserListId);
+            }
             return lists;
         }
 
@@ -37,6 +41,11 @@ namespace SimpleListLogic.Managers
             Context.SaveChanges();
 
             return list;
+        }
+
+        public UserList GetUserList(int id)
+        {
+            return Context.UserLists.FirstOrDefault(l => l.UserListId == id);
         }
     }
 }

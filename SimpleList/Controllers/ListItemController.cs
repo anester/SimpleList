@@ -8,10 +8,11 @@ using System.Web.Mvc;
 using SimpleListData;
 using SimpleListContext;
 using SimpleListLogic.Web;
+using SimpleListLogic.Managers;
 
 namespace SimpleList.Controllers
 {
-    public class ListItemController : BaseController
+    public class ListItemController : SecureController<ListItemManager>
     {
         private ListDbContext db = new ListDbContext();
 
@@ -35,6 +36,12 @@ namespace SimpleList.Controllers
             }
 
             return View(listitems.ToList());
+        }
+
+        public ActionResult ListItemsPart(int id)
+        {
+            IEnumerable<ListItem> items = Manager.GetItems(id);
+            return PartialView("ListItemsPart", items);
         }
 
         //
@@ -63,7 +70,6 @@ namespace SimpleList.Controllers
         // POST: /ListItem/Create
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(ListItem listitem)
         {
             if (ModelState.IsValid)
@@ -125,7 +131,6 @@ namespace SimpleList.Controllers
         // POST: /ListItem/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             ListItem listitem = db.ListItems.Find(id);

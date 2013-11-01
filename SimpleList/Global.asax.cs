@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleListLogic.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,12 +18,20 @@ namespace SimpleList
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+
+
+        }
+
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            LoginManager lm = new LoginManager(new SimpleListSession());
+            lm.LogIn("anester", "asdf");
         }
     }
 }

@@ -18,6 +18,12 @@ namespace SimpleList.Controllers
             return View(lists);
         }
 
+        public PartialViewResult ListPart(int id)
+        {
+            UserList list = Manager.GetUserList(id);
+            return PartialView("ListPart", list);
+        }
+
         public PartialViewResult Create(string loginname)
         {
             UserList list = new UserList();
