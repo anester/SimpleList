@@ -12,6 +12,9 @@
     @RenderSection("styles", required: false)
 </head>
 <body>
+    <div id="__AjaxAntiForgeryForm" class="hide">
+        @Html.AntiForgeryToken()
+    </div>
     <div class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -43,7 +46,13 @@
     <script src="~/Scripts/jquery-2.0.3.js"></script>
     <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
-
+    <script type="text/javascript">
+        var UserId = '@ViewBag.User';
+        function AddAntiForgeryToken(data) {
+            data.__RequestVerificationToken = $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val();
+            return data;
+        }
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

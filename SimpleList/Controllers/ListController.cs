@@ -31,6 +31,7 @@ namespace SimpleList.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(UserList list)
         {
             UserList nlist  = Manager.CreateUserList(ListSession.CurrentLoginName, list.UserListName, list.Description);

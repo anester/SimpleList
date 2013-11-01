@@ -6,12 +6,12 @@
                 userlistid = $conlistdiv.attr("data-userlistid"),
                 today = new Date();
 
-            $.post('/ListItem/Create', {
+            $.post('/ListItem/Create', AddAntiForgeryToken({
                 UserListId: userlistid,
                 ListItemName: $input.val(),
                 DateEntered: (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear(),
                 Description: ''
-            }, function () {
+            }), function () {
                 $.get('/List/ListPart/' + userlistid, function (html) {
                     var $newpanel = $(html);
                     $('.list-item-new', $newpanel).keyup(enterNewItem);
@@ -23,7 +23,7 @@
     };
 
     $('#newlistbtn').click(function () {
-        $.get('/List/Create/anester', null, function (data) {
+        $.get('/List/Create/' + UserId, null, function (data) {
             $('#creatediv').html(data).show().dialog({
 
             });
@@ -33,7 +33,7 @@
                 var name = $('[name="UserListName"]', $('#creatediv')).val(),
                     desc = $('[name="UserListName"]', $('#creatediv')).val();
 
-                $.post('/List/Create/anester', { UserListName: name, Description: desc }, function (data) {
+                $.post('/List/Create/anester', AddAntiForgeryToken({ UserListName: name, Description: desc }), function (data) {
                     location.reload();
                 });
             });
@@ -46,9 +46,25 @@
         var $this = $(this),
             $a = $this.closest('a');
 
-        $.post('/ListItem/Delete/', { id: $this.attr('data-id') }, function () {
+        $.post('/ListItem/Delete/', AddAntiForgeryToken({ id: $this.attr('data-id') }), function () {
             $a.remove();
         });
+    });
+
+    $('.list-item-isdone').click(function () {
+        var $this = $(this),
+            value = $this.val(),
+            listitemid = $this.closest('a').attr('data-id'),
+            ischecked = $this.is(':checked');
+
+        if (ischecked) {
+            $.get('/ListItem/CompleteListItem/' + listitemid, function () {
+
+            });
+        }
+        else {
+
+        }
     });
 
     $('.list-item-new').keyup(enterNewItem);

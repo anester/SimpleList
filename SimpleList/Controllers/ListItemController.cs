@@ -44,6 +44,18 @@ namespace SimpleList.Controllers
             return PartialView("ListItemsPart", items);
         }
 
+        public ActionResult CompleteListItem(int id)
+        {
+            //figure out how to handle error gracefully
+            //for example what if the id doesn't exists
+            if (Manager.MarkAsDone(id))
+            {
+                IEnumerable<ListItem> items = Manager.GetItemsFromListItemId(id);
+                return PartialView("ListItemsPart", items);
+            }
+            return PartialView("ListItemsPart", null);
+        }
+
         //
         // GET: /ListItem/Details/5
 
@@ -116,7 +128,6 @@ namespace SimpleList.Controllers
 
         //
         // GET: /ListItem/Delete/5
-
         public ActionResult Delete(int id = 0)
         {
             ListItem listitem = db.ListItems.Find(id);
@@ -129,13 +140,16 @@ namespace SimpleList.Controllers
 
         //
         // POST: /ListItem/Delete/5
-
         [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ListItem listitem = db.ListItems.Find(id);
-            db.ListItems.Remove(listitem);
-            db.SaveChanges();
+            //Figure out what the hell todo here, since I am calling this method
+            //with jquery do not need to return full page
+            if(Manager.DeleteItem(id))
+            {
+                return RedirectToAction("Index");
+            }
             return RedirectToAction("Index");
         }
 
