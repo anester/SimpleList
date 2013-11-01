@@ -34,7 +34,8 @@ namespace SimpleListLogic.Managers
             {
                 UserId = id,
                 UserListName = listname,
-                Description = description
+                Description = description,
+                DateCreated = DateTime.Now
             };
 
             Context.UserLists.Add(list);

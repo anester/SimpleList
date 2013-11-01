@@ -26,6 +26,16 @@ namespace SimpleList
             Manager = (T)Activator.CreateInstance(typeof(T), ListSession);
         }
 
+        protected override void OnAuthentication(System.Web.Mvc.Filters.AuthenticationContext filterContext)
+        {
+            base.OnAuthentication(filterContext);
+        }
+
+        protected override void OnAuthorization(AuthorizationContext filterContext)
+        {
+            base.OnAuthorization(filterContext);
+        }
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             ViewBag.User = ListSession.CurrentLoginName;

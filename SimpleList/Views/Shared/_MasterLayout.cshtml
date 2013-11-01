@@ -15,7 +15,7 @@
     <div id="__AjaxAntiForgeryForm" class="hide">
         @Html.AntiForgeryToken()
     </div>
-    <div class="navbar navbar-inverse navbar-static-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -23,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Project name</a>
+                <a class="navbar-brand" href="#">@ViewBag.User's Simple Lists</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -35,6 +35,22 @@
             </div><!--/.nav-collapse -->
         </div>
     </div>
+    <!--
+        Adding padding so things do not go under the menu
+        Probably a better way to do this oh well.
+        -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">&nbsp;</div>
+        </div>
+    </div>
+
 
     @RenderSection("featured", required: false)
     <div class="container">

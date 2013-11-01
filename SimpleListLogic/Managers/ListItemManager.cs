@@ -21,6 +21,28 @@ namespace SimpleListLogic.Managers
             return items;
         }
 
+        public ListItem GetItem(int listitemid)
+        {
+            var item = Context.ListItems.Find(listitemid);
+            return item;
+        }
+
+        public ListItem Create(int userlistid, string listitemname, string description, DateTime? dateentered = null)
+        {
+            ListItem item = new ListItem()
+            {
+                UserListId = userlistid, 
+                ListItemName = listitemname,
+                Description = description,
+                DateEntered = dateentered.HasValue ? dateentered.Value : DateTime.Now
+            };
+
+            Context.ListItems.Add(item);
+            Context.SaveChanges();
+
+            return item;
+        }
+
         public bool DeleteItem(int listitemid)
         {
             ListItem listitem = Context.ListItems.Find(listitemid);

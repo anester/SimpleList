@@ -12,11 +12,17 @@ namespace SimpleList.Controllers
     {
         //
         // GET: /List/
-        public ActionResult Index(string loginname)
+        public ActionResult Index(string loginname, int listid = 0)
         {
             IEnumerable<UserList> lists = Manager.GetUserLists(loginname);
-            return View(lists);
+            return View("Index", lists);
         }
+
+        public ActionResult MyLists()
+        {
+            return Index(ListSession.CurrentLoginName);
+        }
+
 
         public PartialViewResult ListPart(int id)
         {
@@ -34,7 +40,7 @@ namespace SimpleList.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(UserList list)
         {
-            UserList nlist  = Manager.CreateUserList(ListSession.CurrentLoginName, list.UserListName, list.Description);
+            UserList nlist = Manager.CreateUserList(ListSession.CurrentLoginName, list.UserListName, list.Description);
             return PartialView("CreateListPart", nlist);
         }
     }

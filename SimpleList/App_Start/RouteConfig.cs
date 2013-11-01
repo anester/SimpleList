@@ -27,6 +27,27 @@ namespace SimpleList
 
 
             routes.MapRoute(
+                name: "MyLists",
+                url: "MyLists",
+                defaults: new
+                {
+                    controller = "List",
+                    action = "MyLists",
+                    listid = UrlParameter.Optional
+                }
+            );
+
+            routes.MapRoute(
+                name: "Lists",
+                url: "Lists/{loginname}/{listid}",
+                defaults: new { 
+                    controller = "List", 
+                    action = "Index", 
+                    listid = UrlParameter.Optional 
+                }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

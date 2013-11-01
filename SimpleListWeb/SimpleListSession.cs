@@ -44,7 +44,7 @@ namespace SimpleList
 
         public string CurrentLoginName
         {
-            get { return CurrentLogin.LoginName; }
+            get { return CurrentLogin == null ? "" : CurrentLogin.LoginName; }
             set { }
         }
 
