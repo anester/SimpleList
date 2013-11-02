@@ -19,6 +19,24 @@ namespace SimpleList.Controllers
             return View("Index", lists);
         }
 
+        [HttpPost,
+        ActionName("Index")]
+        public ActionResult IndexPart(string loginname, string daterange = "", string name = "")
+        {
+            DateTime d1 = DateTime.MinValue;
+            DateTime d2 = DateTime.MaxValue;
+
+            //Move logic to Logic layer
+            if (daterange.Contains(".."))
+            {
+                d1 = DateTime.Parse(daterange.Split(new string[] { ".." }, StringSplitOptions.RemoveEmptyEntries)[0]);
+                d2 = DateTime.Parse(daterange.Split(new string[] { ".." }, StringSplitOptions.RemoveEmptyEntries)[1]);
+            }
+
+            IEnumerable<UserList> lists = Manager.GetUserLists(loginname, name, d1, d2);
+            return PartialView("ListOfUserListPart", lists);
+        }
+
         public ActionResult MyLists()
         {
             return Index(ListSession.CurrentLoginName);

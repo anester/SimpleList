@@ -2,8 +2,10 @@
 using SimpleListLogic.Web;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SimpleListLogic.Managers
@@ -19,11 +21,30 @@ namespace SimpleListLogic.Managers
         public IEnumerable<UserList> GetUserLists(string username = "")
         {
             string lookupname = string.IsNullOrEmpty(username) ? Session.CurrentLogin.LoginName : username;
-            var lists = Context.UserLists.Where(ul => ul.Owner.UserLogin.LoginName == lookupname).ToList();
-            foreach (var list in lists)
+            var lists = Context.UserLists.Where(ul => ul.Owner.UserLogin.LoginName == lookupname).OrderByDescending(l => l.DateCreated);
+            return lists;
+        }
+
+        public IEnumerable<UserList> GetUserLists(string username, string listname, DateTime? fromdate, DateTime? todate)
+        {
+            string lookupname = string.IsNullOrEmpty(username) ? Session.CurrentLogin.LoginName : username;
+            string lookuplistname = "";
+            DateTime lookupfromdate = fromdate.HasValue ? fromdate.Value : DateTime.MinValue;
+            DateTime lookuptodate = todate.HasValue ? todate.Value : DateTime.MaxValue;
+            if (!string.IsNullOrEmpty(listname))
             {
-                list.ListItems = Context.ListItems.Where(i => i.UserListId == list.UserListId);
+                lookuplistname = listname;
             }
+
+            var lists = from l in Context.UserLists
+                        where l.UserListName.Contains(lookuplistname)
+                            && l.DateCreated >= lookupfromdate 
+                            && l.DateCreated <= lookuptodate
+                            && l.ListStatus != UserListStatus.Closed
+                        orderby l.DateCreated descending
+                        select l;
+            
+            //var lists = Context.UserLists.Where(ul => ul.Owner.UserLogin.LoginName == lookupname).OrderByDescending(l => l.DateCreated);
             return lists;
         }
 

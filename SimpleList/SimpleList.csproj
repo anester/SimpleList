@@ -338,6 +338,7 @@
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
     <Content Include="Views\ListItem\ListItemsPart.cshtml" />
     <Content Include="Views\List\ListPart.cshtml" />
+    <Content Include="Views\List\ListOfUserListPart.cshtml" />
     <None Include="Views\Web.config" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />

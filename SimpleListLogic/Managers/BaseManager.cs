@@ -15,6 +15,7 @@ namespace SimpleListLogic.Managers
 
         public BaseManager(string connectionstring = "DefaultConnection")
         {
+
             Context = new ListDbContext(connectionstring);
         }
 

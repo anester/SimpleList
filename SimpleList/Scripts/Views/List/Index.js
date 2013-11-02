@@ -123,5 +123,16 @@
         });
     });
 
+    $('#filterlistbtn').click(function () {
+        var $name = $('#listnameipt'),
+            $date = $('#listdateipt'),
+            $container = $('.user-list-container');
+
+        $.post('/List/Index', AddAntiForgeryToken({ loginname: UserId, daterange: $date.val(), name: $name.val() }), function (data) {
+            $container.html(data);
+            applyListEvents($container);
+        });
+    });
+
     applyListEvents($('body'));
 });

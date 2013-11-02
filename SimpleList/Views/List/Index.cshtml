@@ -23,6 +23,7 @@
             <div class="col-md-2">
                 <button type="button" class="btn btn-xs btn-default" id="newlistbtn">New</button>
                 <button type="button" class="btn btn-xs btn-default" id="downloadlistbtn">Download</button>
+                <button type="button" class="btn btn-xs btn-default" id="filterlistbtn">Filter</button>
             </div>
             <div class="col-md-3">
                 <label>Name:</label>
@@ -42,20 +43,8 @@
 <h2>Index</h2>
 <div id="creatediv" class=""></div>
 
-<div class="row">
-    @{int cur = 0; }
-    @foreach (SimpleListData.UserList item in Model) 
-    {
-        if (cur == 3)
-	    {
-            cur = 0;
-            @:<div class="row"></div>
-	    }
-        
-        @Html.Partial("ListPart", item)
-        
-        cur++;
-    }
+<div class="row user-list-container">
+    @Html.Partial("ListOfUserListPart", Model)
 </div>
 
 @section scripts {
