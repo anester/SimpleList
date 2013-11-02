@@ -42,6 +42,19 @@ namespace SimpleList.Controllers
             return PartialView("ListItemsPart", null);
         }
 
+        public ActionResult UnCompleteListItem(int id)
+        {
+            //figure out how to handle error gracefully
+            //for example what if the id doesn't exists
+            if (Manager.MarkAsUnDone(id))
+            {
+                IEnumerable<ListItem> items = Manager.GetItemsFromListItemId(id);
+                return PartialView("ListItemsPart", items);
+            }
+            return PartialView("ListItemsPart", null);
+
+        }
+
         //
         // GET: /ListItem/Details/5
         public ActionResult Details(int id = 0)

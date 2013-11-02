@@ -14,7 +14,8 @@ namespace SimpleList.Controllers
         // GET: /List/
         public ActionResult Index(string loginname, int listid = 0)
         {
-            IEnumerable<UserList> lists = Manager.GetUserLists(loginname);
+            //Move logic to Logic layer
+            IEnumerable<UserList> lists = Manager.GetUserLists(loginname).Where(l => !l.DateCompleted.HasValue);
             return View("Index", lists);
         }
 
@@ -23,6 +24,11 @@ namespace SimpleList.Controllers
             return Index(ListSession.CurrentLoginName);
         }
 
+        public ActionResult CloseList(int id)
+        {
+            UserList list = Manager.CloseUserList(id);
+            return PartialView("ListPart", list);
+        }
 
         public PartialViewResult ListPart(int id)
         {

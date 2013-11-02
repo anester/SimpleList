@@ -1,8 +1,8 @@
 ﻿
-    <div class="list-group">
+    <div class="list-group user-list-group">
         @foreach (SimpleListData.ListItem item in Model)
 {
-    <a href="#" class="list-group-item" data-id="@item.ListItemId">
+    <a href="#" class="list-group-item user-list-item" data-id="@item.ListItemId">
         @if (item.DateDone.HasValue)
         {
             <input type="checkbox" class="list-item-isdone" checked="checked" />

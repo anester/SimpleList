@@ -78,5 +78,20 @@ namespace SimpleListLogic.Managers
 
             return Context.ListItems.Where(i => i.UserListId == listid);
         }
+
+        public bool MarkAsUnDone(int id)
+        {
+            ListItem item = Context.ListItems.Find(id);
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            item.DateDone = null;
+            Context.SaveChanges();
+
+            return true;
+        }
     }
 }

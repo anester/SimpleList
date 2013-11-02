@@ -20,6 +20,19 @@
                 });
             });
         }
+    },
+    checkIfAllItemsChecked = function ($container) {
+        var $items = $('.list-item-isdone', $container),
+            allChecked = true;
+        $items.each(function (i, e) {
+            var $e = $(e);
+
+            if (!$e.is(':checked')) {
+                allChecked = false;
+            }
+        });
+
+        return allChecked;
     };
 
     $('#newlistbtn').click(function () {
@@ -53,17 +66,38 @@
 
     $('.list-item-isdone').click(function () {
         var $this = $(this),
+            $listgroup = $this.closest('.user-list-group'),
+            $userlist = $this.closest('.userlist'),
             value = $this.val(),
             listitemid = $this.closest('a').attr('data-id'),
             ischecked = $this.is(':checked');
 
         if (ischecked) {
             $.get('/ListItem/CompleteListItem/' + listitemid, function () {
-
+                if (checkIfAllItemsChecked($listgroup)) {
+                    $('<div>Do you want to close the list.</div>').dialog({
+                        resizable: false,
+                        height: 140,
+                        modal: true,
+                        buttons: {
+                            "Close List": function () {
+                                $.get('/List/CloseList/' + $userlist.attr('data-userlistid'), function () {
+                                    $userlist.remove();
+                                });
+                                $(this).dialog("close");
+                            },
+                            Cancel: function () {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                }
             });
         }
         else {
+            $.get('/ListItem/UnCompleteListItem/' + listitemid, function () {
 
+            });
         }
     });
 

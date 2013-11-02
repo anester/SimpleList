@@ -48,5 +48,13 @@ namespace SimpleListLogic.Managers
         {
             return Context.UserLists.FirstOrDefault(l => l.UserListId == id);
         }
+
+        public UserList CloseUserList(int id)
+        {
+            UserList list = GetUserList(id);
+            list.DateCompleted = DateTime.Now;
+            Context.SaveChanges();
+            return list;
+        }
     }
 }
