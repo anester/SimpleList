@@ -14,14 +14,13 @@
             }), function () {
                 $.get('/List/ListPart/' + userlistid, function (html) {
                     var $newpanel = $(html);
-                    $('.list-item-new', $newpanel).keyup(enterNewItem);
+                    applyListEvents($newpanel);
                     $conlistdiv.replaceWith($newpanel);
                     $('.list-item-new', $newpanel).focus();
                 });
             });
         }
     },
-
     checkIfAllItemsChecked = function ($container) {
         var $items = $('.list-item-isdone', $container),
             allChecked = true;
@@ -34,38 +33,8 @@
         });
 
         return allChecked;
-    };
-
-    $('#newlistbtn').click(function () {
-        $.get('/List/Create/' + UserId, null, function (data) {
-            $('#creatediv').html(data).show().dialog({
-
-            });
-
-
-            $('input[type="submit"]', $('#creatediv')).click(function () {
-                var name = $('[name="UserListName"]', $('#creatediv')).val(),
-                    desc = $('[name="UserListName"]', $('#creatediv')).val();
-
-                $.post('/List/Create/anester', AddAntiForgeryToken({ UserListName: name, Description: desc }), function (data) {
-                    location.reload();
-                });
-            });
-        }).error(function (e) {
-            alert(e);
-        });
-    });
-
-    $('.remove-list-item').click(function () {
-        var $this = $(this),
-            $a = $this.closest('a');
-
-        $.post('/ListItem/Delete/', AddAntiForgeryToken({ id: $this.attr('data-id') }), function () {
-            $a.remove();
-        });
-    });
-
-    $('.list-item-isdone').click(function () {
+    },
+    idDoneClicked = function () {
         var $this = $(this),
             $listgroup = $this.closest('.user-list-group'),
             $userlist = $this.closest('.userlist'),
@@ -100,11 +69,8 @@
 
             });
         }
-    });
-
-    $('.list-item-new').keyup(enterNewItem);
-
-    $('.user-list-lock').click(function () {
+    },
+    locklistClicked = function () {
         var $this = $(this),
             $userlist = $this.closest('.userlist'),
             $input = $('input.list-item-new', $userlist),
@@ -121,5 +87,41 @@
                 $input.show();
             });
         }
+    },
+    removeListItem = function () {
+        var $this = $(this),
+            $a = $this.closest('a');
+
+        $.post('/ListItem/Delete/', AddAntiForgeryToken({ id: $this.attr('data-id') }), function () {
+            $a.remove();
+        });
+    },
+    applyListEvents = function ($container) {
+        $('.remove-list-item', $container).click(removeListItem);
+        $('.list-item-isdone', $container).click(idDoneClicked);
+        $('.list-item-new', $container).keyup(enterNewItem);
+        $('.user-list-lock', $container).click(locklistClicked);
+    };
+
+    $('#newlistbtn').click(function () {
+        $.get('/List/Create/' + UserId, null, function (data) {
+            $('#creatediv').html(data).show().dialog({
+
+            });
+
+
+            $('input[type="submit"]', $('#creatediv')).click(function () {
+                var name = $('[name="UserListName"]', $('#creatediv')).val(),
+                    desc = $('[name="UserListName"]', $('#creatediv')).val();
+
+                $.post('/List/Create/anester', AddAntiForgeryToken({ UserListName: name, Description: desc }), function (data) {
+                    location.reload();
+                });
+            });
+        }).error(function (e) {
+            alert(e);
+        });
     });
+
+    applyListEvents($('body'));
 });
