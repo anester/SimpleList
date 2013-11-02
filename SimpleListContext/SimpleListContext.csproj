@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201311011412146_add_dates_to_userlist.Designer.cs">
       <DependentUpon>201311011412146_add_dates_to_userlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311021454528_add_list_status.cs" />
+    <Compile Include="Migrations\201311021454528_add_list_status.Designer.cs">
+      <DependentUpon>201311021454528_add_list_status.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311011412146_add_dates_to_userlist.resx">
       <DependentUpon>201311011412146_add_dates_to_userlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311021454528_add_list_status.resx">
+      <DependentUpon>201311021454528_add_list_status.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

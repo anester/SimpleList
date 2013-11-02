@@ -1,20 +1,28 @@
 ﻿
-    <div class="list-group user-list-group">
-        @foreach (SimpleListData.ListItem item in Model)
-{
-    <a href="#" class="list-group-item user-list-item" data-id="@item.ListItemId">
-        @if (item.DateDone.HasValue)
+<div class="list-group user-list-group">
+    @foreach (SimpleListData.ListItem item in Model.ListItems)
+    {
+        <a href="#" class="list-group-item user-list-item" data-id="@item.ListItemId">
+            @if (item.DateDone.HasValue)
+            {
+                <input type="checkbox" class="list-item-isdone" checked="checked" />
+            }
+            else
+            {
+                <input type="checkbox" class="list-item-isdone" />
+            }
+            @item.ListItemName<span class="close remove-list-item" data-id="@item.ListItemId">x</span>
+        </a>
+    }
+
+    <a class="list-group-item">
+        @if (@Model.ListStatus == SimpleListData.UserListStatus.Open)
         {
-            <input type="checkbox" class="list-item-isdone" checked="checked" />
+            <input class="list-item-new" />
         }
         else
         {
-            <input type="checkbox" class="list-item-isdone" />
+            <input class="list-item-new" style="display:none;" />
         }
-        @item.ListItemName<span class="close remove-list-item" data-id="@item.ListItemId">x</span>
     </a>
-}
-        <a class="list-group-item">
-            <input class="list-item-new" />
-        </a>
 </div>

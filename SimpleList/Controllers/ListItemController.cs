@@ -26,8 +26,12 @@ namespace SimpleList.Controllers
 
         public ActionResult ListItemsPart(int id)
         {
+            UserListManager ulm = new UserListManager(ListSession);
+            UserList list = ulm.GetUserList(id);
             IEnumerable<ListItem> items = Manager.GetItems(id);
-            return PartialView("ListItemsPart", items);
+            list.ListItems = items;
+
+            return PartialView("ListItemsPart", list);
         }
 
         public ActionResult CompleteListItem(int id)
@@ -37,9 +41,17 @@ namespace SimpleList.Controllers
             if (Manager.MarkAsDone(id))
             {
                 IEnumerable<ListItem> items = Manager.GetItemsFromListItemId(id);
-                return PartialView("ListItemsPart", items);
+                
+                return PartialView("ListItemsPart", new UserList()
+                {
+                    ListItems = items
+                });
             }
-            return PartialView("ListItemsPart", null);
+
+            return PartialView("ListItemsPart", new UserList()
+            {
+                ListItems = new List<ListItem>()
+            });
         }
 
         public ActionResult UnCompleteListItem(int id)
@@ -49,9 +61,17 @@ namespace SimpleList.Controllers
             if (Manager.MarkAsUnDone(id))
             {
                 IEnumerable<ListItem> items = Manager.GetItemsFromListItemId(id);
-                return PartialView("ListItemsPart", items);
+
+                return PartialView("ListItemsPart", new UserList()
+                {
+                    ListItems = items
+                });
             }
-            return PartialView("ListItemsPart", null);
+
+            return PartialView("ListItemsPart", new UserList()
+            {
+                ListItems = new List<ListItem>()
+            });
 
         }
 

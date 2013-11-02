@@ -24,6 +24,18 @@ namespace SimpleList.Controllers
             return Index(ListSession.CurrentLoginName);
         }
 
+        public ActionResult OpenList(int id)
+        {
+            UserList list = Manager.OpenUserList(id);
+            return PartialView("ListPart", list);
+        }
+
+        public ActionResult LockList(int id)
+        {
+            UserList list = Manager.LockUserList(id);
+            return PartialView("ListPart", list);
+        }
+
         public ActionResult CloseList(int id)
         {
             UserList list = Manager.CloseUserList(id);

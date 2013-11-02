@@ -21,6 +21,7 @@
             });
         }
     },
+
     checkIfAllItemsChecked = function ($container) {
         var $items = $('.list-item-isdone', $container),
             allChecked = true;
@@ -102,4 +103,23 @@
     });
 
     $('.list-item-new').keyup(enterNewItem);
+
+    $('.user-list-lock').click(function () {
+        var $this = $(this),
+            $userlist = $this.closest('.userlist'),
+            $input = $('input.list-item-new', $userlist),
+            ischecked = $this.is(':checked'),
+            userlistid = $userlist.attr('data-userlistid');
+
+        if (ischecked) {
+            $.get('/List/LockList/' + userlistid, function () {
+                $input.hide();
+            });
+        }
+        else {
+            $.get('/List/OpenList/' + userlistid, function () {
+                $input.show();
+            });
+        }
+    });
 });

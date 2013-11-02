@@ -53,6 +53,23 @@ namespace SimpleListLogic.Managers
         {
             UserList list = GetUserList(id);
             list.DateCompleted = DateTime.Now;
+            list.ListStatus = UserListStatus.Closed;
+            Context.SaveChanges();
+            return list;
+        }
+
+        public UserList LockUserList(int id)
+        {
+            UserList list = GetUserList(id);
+            list.ListStatus = UserListStatus.Locked;
+            Context.SaveChanges();
+            return list;
+        }
+
+        public UserList OpenUserList(int id)
+        {
+            UserList list = GetUserList(id);
+            list.ListStatus = UserListStatus.Open;
             Context.SaveChanges();
             return list;
         }
