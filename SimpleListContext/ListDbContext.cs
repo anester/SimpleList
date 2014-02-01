@@ -26,5 +26,6 @@ namespace SimpleListContext
         public DbSet<UserList> UserLists { get; set; }
         public DbSet<ListItem> ListItems { get; set; }
         public DbSet<Login> Logins { get; set; }
+        public DbSet<ItemPart> ItemParts { get; set; }
     }
 }

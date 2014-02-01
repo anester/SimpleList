@@ -1,0 +1,30 @@
+﻿@model SimpleListData.UserList
+
+<div class="col-md-12 userlist" data-userlistid="@Model.UserListId">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row panel-title">
+                <div class="col-md-10"><b>@Model.UserListName</b> - @Model.DateCreated.ToString("MMMM dd, yyyy")</div>
+                <div class="col-md-2 right">
+                    <div class="close">
+                        @if (@Model.ListStatus == SimpleListData.UserListStatus.Open)
+                        {
+                            <input type="checkbox" id="user_list_check_@Model.UserListId" class="user-list-lock" />
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="user_list_check_@Model.UserListId" checked="checked" class="user-list-lock" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Action("ListItemsPart", "ListItem", new { id = Model.UserListId })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

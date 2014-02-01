@@ -23,15 +23,13 @@ namespace SimpleList
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
-
-
-
         }
 
         protected void Session_Start(object sender, EventArgs e)
         {
-            LoginManager lm = new LoginManager(new SimpleListSession());
-            lm.LogIn("anester", "asdf");
+            //var sls = new SimpleListSession();
+            //LoginManager lm = new LoginManager(sls);
+            //lm.LogIn("anester", "vazszuow");
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿@model SimpleListData.UserList
 
-<div class="col-md-4 userlist" data-userlistid="@Model.UserListId">
+<div class="userlist" data-userlistid="@Model.UserListId">
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row panel-title">
@@ -21,9 +21,9 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-12">
+                <table class="" style="width:100%;">
                     @Html.Action("ListItemsPart", "ListItem", new { id = Model.UserListId })
-                </div>
+                </table>
             </div>
         </div>
     </div>

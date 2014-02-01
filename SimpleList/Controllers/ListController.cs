@@ -15,8 +15,16 @@ namespace SimpleList.Controllers
         public ActionResult Index(string loginname, int listid = 0)
         {
             //Move logic to Logic layer
+            ViewBag.IsDetail = false;
             IEnumerable<UserList> lists = Manager.GetUserLists(loginname).Where(l => !l.DateCompleted.HasValue);
             return View("Index", lists);
+        }
+
+        public ActionResult Details(int id = 0)
+        {
+            UserList list = Manager.GetUserList(id);
+            ViewBag.IsDetail = true;
+            return View("Index", list);
         }
 
         [HttpPost,

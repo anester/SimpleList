@@ -1,4 +1,7 @@
-﻿@{int cur = 0; }
+﻿@{ 
+    int cur = 0; 
+}
+
 @foreach (SimpleListData.UserList item in Model)
 {
     if (cur == 3)
@@ -6,8 +9,9 @@
         cur = 0;
         @:<div class="row"></div>
 	    }
-
+        ViewBag.IsMulti = true;
+        <div class="col-md-4">
         @Html.Partial("ListPart", item)
-
+        </div>
     cur++;
 }

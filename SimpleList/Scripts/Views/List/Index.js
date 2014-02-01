@@ -16,7 +16,7 @@
                     var $newpanel = $(html);
                     applyListEvents($newpanel);
                     $conlistdiv.replaceWith($newpanel);
-                    $('.list-item-new', $newpanel).focus();
+                    $('.list-item-new input', $newpanel).focus();
                 });
             });
         }
@@ -73,7 +73,7 @@
     locklistClicked = function () {
         var $this = $(this),
             $userlist = $this.closest('.userlist'),
-            $input = $('input.list-item-new', $userlist),
+            $input = $('div.list-item-new', $userlist),
             ischecked = $this.is(':checked'),
             userlistid = $userlist.attr('data-userlistid');
 
@@ -99,7 +99,7 @@
     applyListEvents = function ($container) {
         $('.remove-list-item', $container).click(removeListItem);
         $('.list-item-isdone', $container).click(idDoneClicked);
-        $('.list-item-new', $container).keyup(enterNewItem);
+        $('.list-item-new input', $container).keyup(enterNewItem);
         $('.user-list-lock', $container).click(locklistClicked);
     };
 

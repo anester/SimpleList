@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 
 
 namespace SimpleListLogic.Managers
@@ -29,7 +30,9 @@ namespace SimpleListLogic.Managers
 
         public bool LogIn(string loginname, string password)
         {
-            var login = Context.Logins.FirstOrDefault(l => l.LoginName == loginname && l.Password == password);
+            string hashedpassword = Crypto.SHA256(password);
+
+            var login = Context.Logins.FirstOrDefault(l => l.LoginName == loginname && l.Password == hashedpassword);
             if (login != null)
             {
                 Session.CurrentLogin = login;
@@ -40,10 +43,12 @@ namespace SimpleListLogic.Managers
 
         public UserCreateToken CreateLogin(string loginname, string password, string firstname, string lastname, string email)
         {
+            string hashedpassword = Crypto.SHA256(password);
+
             SimpleListData.Login newlogin = new SimpleListData.Login()
             {
                 LoginName = loginname,
-                Password = password
+                Password = hashedpassword
             };
 
             if (Context.Logins.Count(l => l.LoginName == loginname) > 0)

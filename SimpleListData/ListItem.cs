@@ -16,5 +16,6 @@ namespace SimpleListData
         public DateTime? DateDone { get; set; }
 
         public virtual UserList List { get; set; }
+        public virtual IEnumerable<ItemPart> Parts { get; set; }
     }
 }

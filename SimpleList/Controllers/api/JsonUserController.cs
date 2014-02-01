@@ -10,10 +10,11 @@ using System.Web;
 using System.Web.Http;
 using SimpleListData;
 using SimpleListContext;
+using SimpleListLogic.Managers;
 
 namespace SimpleList.Controllers
 {
-    public class JsonUserController : ApiController
+    public class JsonUserController : SecureApiController<LoginManager>
     {
         private ListDbContext db = new ListDbContext();
 

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace SimpleList
@@ -41,6 +42,18 @@ namespace SimpleList
             ViewBag.User = ListSession.CurrentLoginName;
             base.OnActionExecuting(filterContext);
         }
+    }
 
+    [SessionRequired]
+    public class SecureApiController<T> : ApiController
+    {
+        public T Manager { get; set; }
+        public ISimpleListSession ListSession { get; set; }
+
+        public SecureApiController()
+        {
+            ListSession = new SimpleListSession();
+            Manager = (T)Activator.CreateInstance(typeof(T), ListSession);
+        }
     }
 }

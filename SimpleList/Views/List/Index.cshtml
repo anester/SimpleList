@@ -44,11 +44,18 @@
 <div id="creatediv" class=""></div>
 
 <div class="row user-list-container">
-    @Html.Partial("ListOfUserListPart", Model)
+    @if (ViewBag.IsDetail)
+    {
+        @Html.Partial("ListDetailPart", Model)
+    }
+    else 
+    { 
+        @Html.Partial("ListOfUserListPart", Model)
+    }
 </div>
 
 @section scripts {
-    <link href="~/Content/themes/base/css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
+    @*<link href="~/Content/themes/base/css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui-1.10.3.js"></script>*@
     <script src="~/Scripts/Views/List/Index.js"></script>
 }
